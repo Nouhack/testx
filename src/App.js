@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  assign,
+  increment,
+  incrementByAmount,
+} from "./Redux/Slices/counterSlice";
+import Third from "./components/Third";
 
 function App() {
+  const dispatch = useDispatch();
+  const ref = useRef();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        ref={ref}
+        placeholder="insert value"
+        onChange={(e) => dispatch(assign(e.target.value))}
+      />
+
+      <Third />
     </div>
   );
 }
