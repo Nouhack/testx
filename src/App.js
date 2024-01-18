@@ -13,7 +13,7 @@ function App() {
           dispatch(increment());
         }}
       >
-        increment
+        increment update
       </button>
     </div>
   );
