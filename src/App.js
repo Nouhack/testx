@@ -1,27 +1,20 @@
-import React, { useRef } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import "./App.css";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  assign,
-  increment,
-  incrementByAmount,
-} from "./Redux/Slices/counterSlice";
-import Third from "./components/Third";
+import { increment } from "./Redux/Slices/counterSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const ref = useRef();
+  const count = useSelector((state) => state.counter.value);
   return (
     <div>
-      <input
-        ref={ref}
-        placeholder="insert value"
-        onChange={(e) => dispatch(assign(e.target.value))}
-      />
-
-      <Third />
+      <p>{count}</p>
+      <button
+        onClick={() => {
+          dispatch(increment());
+        }}
+      >
+        increment
+      </button>
     </div>
   );
 }
